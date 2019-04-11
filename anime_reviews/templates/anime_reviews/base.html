@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minneapolis Otaku Club Web App</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+</head>
+<h1><a href="{% url 'anime_reviews:homepage' %}">Otaku Club</a></h1>
+{% if user.is_authenticated %}
+  <span id='welcome_user_msg'>You are logged in, <a href="{% url 'anime_reviews:user_profile' user_pk=user.pk %}">{{ user.username }}</a>.  <a href="{% url 'lmn:logout' %}">Logout</a></span>
+
+{% else %}
+
+  <span id='login_or_sign_up'><a href="{% url 'anime_reviews:login' %}?next={{ request.path }}">Login or sign up</a></span>
+{% endif %}
+<hr>
+{% block content %}
+{% endblock %}
+<hr>
+<p>A web app written in Django by an average otaku</p>
+</html>
