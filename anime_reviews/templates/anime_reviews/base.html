@@ -17,7 +17,7 @@
 </head>
 <h1><a href="{% url 'anime_reviews:homepage' %}">Otaku Club</a></h1>
 {% if user.is_authenticated %}
-  <span id='welcome_user_msg'>You are logged in, <a href="{% url 'anime_reviews:user_profile' user_pk=user.pk %}">{{ user.username }}</a>.  <a href="{% url 'lmn:logout' %}">Logout</a></span>
+  <span id='welcome_user_msg'>You are logged in, <a href="{% url 'anime_reviews:user_profile' user_pk=user.pk %}">{{ user.username }}</a>.  <a href="{% url 'anime_reviews:logout' %}">Logout</a></span>
 
 {% else %}
 

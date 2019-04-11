@@ -8,6 +8,16 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
 
+def user_profile(request, user_pk):
+    user = User.objects.get(user=user_pk)
+    return render(request, 'users/user_profile.html', {'user':user})
+
+
+@login_required
+def my_user_profile(request):
+    return redirect('anime_reviews:user_profile', user_pk=request.user.pk)
+
+
 def register(request):
 
     if request.method == 'POST':
