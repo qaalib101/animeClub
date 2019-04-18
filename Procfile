@@ -1,2 +1,2 @@
-web: gunicorn animeClub/wsgi.py
+web: gunicorn animeClub.wsgi
 release: python manage.py migrate
