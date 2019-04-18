@@ -25,7 +25,7 @@ SECRET_KEY = ')vashq4j%)76u+^hy&mm2d4@jzn&$&9#wn86+gk(17g$$^o5+&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['animeclub.herokuapp.com', '127.0.0.1:8000']
 
 
 # Application definition
