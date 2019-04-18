@@ -1,16 +1,27 @@
 {% extends 'anime_reviews/base.html' %}
 
 {% block content %}
+    {% if message %}
+        <P>{{ message }}</p>
+    {% endif %}
 
   <h2>Log in</h2>
 
-  <form method='POST' action="{% url 'anime_reviews:login' %}">{% csrf_token %}
+  <form method='POST' action="{% url 'anime_reviews:login_and_signup' %}">{% csrf_token %}
+      <input name="url" type="hidden" value={{ request.GET.next }}>
   <table id='login_form'>
-    {{ form.as_table }}
+    {{ l_form.as_table }}
   </table>
     <button type="submit">Login</button>
   </form>
 
-<P><a href="{% url 'anime_reviews:register' %}">Or create an account</a></p>
+<H2>Or Register</H2>
+<form method='post' action="{% url 'anime_reviews:register' %}">{% csrf_token %}
+    <input name="url" type="hidden" value={{ request.GET.next }}>
+  <table id="registration_form">
+    {{ s_form.as_table}}
+  </table>
+  <button type='submit'>Register</button>
+</form>
 
 {% endblock %}

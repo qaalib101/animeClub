@@ -37,3 +37,10 @@ class TestUserRegistration(TestCase):
                                      'password1': 'feRpj4w4pso3az', 'password2': 'feRpj4w4pso3az'}, follow=True)
         self.assertContains(response2, 'Please check the data you entered')
         self.assertEqual(response.status_code, 200)
+
+
+class TestUserLogin(TestCase):
+    def test_wrong_login(self):
+        response = self.client.post(reverse('anime_reviews:login_and_signup'), {'username':'qaalib101', 'password': 'wrong_password'}, follow=True)
+        self.assertContains(response, 'Please enter a correct username and password. Note that both fields may be case-sensitive.')
+        self.assertTemplateUsed(response, 'registration/login.html')

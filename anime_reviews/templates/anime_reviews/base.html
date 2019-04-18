@@ -14,6 +14,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <h1><a href="{% url 'anime_reviews:homepage' %}">Otaku Club</a></h1>
 {% if user.is_authenticated %}
@@ -21,7 +22,7 @@
 
 {% else %}
 
-  <span id='login_or_sign_up'><a href="{% url 'anime_reviews:login' %}?next={{ request.path }}">Login or sign up</a></span>
+  <span id='login_or_sign_up'><a href="{% url 'anime_reviews:login_and_signup' %}?next={{ request.path }}">Login or sign up</a></span>
 {% endif %}
 <hr>
 {% block content %}
