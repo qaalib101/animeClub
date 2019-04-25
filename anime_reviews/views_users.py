@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, reverse
+from django.http import Http404
 
-from .models import Review
-from .forms import UserRegistrationForm, UserLoginForm
+from .models import Review, UserProfile
+from .forms import UserRegistrationForm, UserLoginForm, UserProfileForm
 from django.conf import settings
 
 from django.contrib.auth.decorators import login_required
@@ -12,7 +13,11 @@ from django.contrib.auth import authenticate, login, logout
 def user_profile(request, user_pk):
     user = User.objects.get(pk=user_pk)
     reviews = Review.objects.all().filter(user=user_pk).order_by('posted_date', 'likes')
-    return render(request, 'users/user_profile.html', {'user':user, 'reviews': reviews})
+    try:
+        profile = get_object_or_404(UserProfile, user=user.pk)
+        return render(request, 'users/user_profile.html', {'user': user, 'reviews': reviews, 'profile': profile})
+    except Http404:
+        return render(request, 'users/user_profile.html', {'user': user, 'reviews': reviews})
 
 
 @login_required
@@ -69,3 +74,30 @@ def register(request):
             message = 'Please check the data you entered'
             return render(request, 'registration/login.html', {'s_form': signUpForm, 'l_form': loginForm, 'message':message})
 
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        user = request.user
+        try:
+            profile = get_object_or_404(UserProfile, user=user.pk)
+            form = UserProfileForm(request.POST, instance=profile)
+            if form.is_valid():
+                form.save()
+                return redirect('anime_reviews:user_profile')
+            else:
+                message = "Please check data entered."
+                return render(request, reverse('anime_reviews:edit_profile'), {'message': message, 'form': form})
+        except Http404:
+            form = UserProfileForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('anime_reviews:user_profile')
+    else:
+        form = UserProfileForm()
+        return render(request, 'users/edit_profile.html', {'form': form})
+
+
+def user_logout(request):
+    logout(request)
+    return redirect(settings.LOGOUT_REDIRECT_URL)

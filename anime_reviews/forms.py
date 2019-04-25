@@ -67,11 +67,21 @@ class UserRegistrationForm(UserCreationForm):
 
 
 class UserLoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput())
+    username = forms.CharField(widget=forms.TextInput)
     password = forms.CharField(widget=forms.PasswordInput)
 
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ()
+        fields = ('bio', 'photo')
+
+
+class AnimeSearchForm(forms.Form):
+    anime_search = forms.CharField(label='Anime Name', max_length=200)
+
+
+class ReviewFrom(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ('episode', 'comments', 'positive_review')

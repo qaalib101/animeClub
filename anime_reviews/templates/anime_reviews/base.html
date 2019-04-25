@@ -24,7 +24,11 @@
 
   <span id='login_or_sign_up'><a href="{% url 'anime_reviews:login_and_signup' %}?next={{ request.path }}">Login or sign up</a></span>
 {% endif %}
+<span id="anime_search"><a href="{% url 'anime_reviews:anime_search' %}">Reviews</a></span>
 <hr>
+{% if message %}
+    {{ message }}
+{% endif %}
 {% block content %}
 {% endblock %}
 <hr>

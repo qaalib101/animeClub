@@ -1,0 +1,8 @@
+{% extends 'anime_reviews/base.html' %}
+{% block content %}
+    <P>Edit Profile</P>
+    <form id="edit_profile_form" method="POST" action="{% url 'anime_reviews:edit_profile' %}">{% csrf_token %}
+    {{ form.as_table }}
+    <button class="btn btn-default" type="submit">Edit</button>
+    </form>
+{% endblock %}

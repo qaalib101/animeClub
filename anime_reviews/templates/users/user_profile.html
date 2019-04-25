@@ -6,13 +6,23 @@
     <h1>Welcome to {{ user.username }}'s profile</h1>
 
 {% endif %}
-<p>Here is the future club member profile</p>
 
+    <a href="{% url 'anime_reviews:edit_profile' %}"><span class="full-right"><span class="glyphicon glyphicon-pencil"></span></span></a>
+
+<p>Here is the future club member profile</p>
+    <p>Member since: {{ user.date_joined }}</p>
+    {% if profile %}
+        <p>Member photo: <span id="member_photo">{{ profile.photo }}</span></p>
+        <p>Bio: {{ profile.bio }}</p>
+    {% else %}
+        <p>Update your profile so other club members can see what you are about</p>
+    {% endif %}
 <P>Latest reviews: </P>
 
 {% if reviews %}
     {% for r in reviews %}
-        r
+        <h2>{{ r.anime_title }}</h2>
+        <p>Episode: {{ r.episode }}<</p>
     {% endfor %}
 {% else %}
     <p>You have no reviews yet!</p>
