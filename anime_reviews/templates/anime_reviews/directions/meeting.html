@@ -1,0 +1,26 @@
+{% extends 'anime_reviews/base.html' %}
+{% block content %}
+        <div class="well well-lg">
+            <h3>
+                Here is where we meetup: The caribou on the corner of 81st and Central Avenue on Sundays.
+                Around 3 o' clock pm
+            </h3>
+            <div id="map" style="width: 1000px; height: 1000px;">
+
+            </div>
+        </div>
+    <script>
+    function initMap() {
+        // The location of Uluru
+        var meeting = {lat: 45.114920, lng: -93.241063};
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+        document.getElementById('map'), {zoom: 18, center: meeting});
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({position: meeting, map: map});
+    }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=initMap">
+    </script>
+{% endblock %}

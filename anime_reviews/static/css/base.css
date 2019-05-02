@@ -16,3 +16,6 @@ body {
     padding-right: 10px;
     size: 12px;
 }
+body{
+    background-image: linear-gradient(deepskyblue, darkseagreen);
+}

@@ -1,27 +1,30 @@
 {% extends 'anime_reviews/base.html' %}
 {% block content %}
+    <div class="well">
     <form id="anime_search_form" action="{% url 'anime_reviews:anime_search' %}" method="POST">{% csrf_token %}
         {{ form.as_table }}
         <button class="btn btn-primary" type="submit">Search</button>
     </form>
-    <div class="container">
         {% for show in shows %}
-            <div class="well">
+
                 <a href="{% url 'anime_reviews:anime_detail' anime_id=show.mal_id %}">{{ show.title }}</a>
                 <p> Synopsis: {{ show.synopsis|truncatewords:30 }}</p>
-            </div>
+
         {% empty %}
             <div>Search for an anime tv show</div>
         {% endfor %}
     </div>
     <hr>
-    <P>Latest Reviews</P>
-    <div class="container">
-    {% for r in reviews %}
-
-    {% empty %}
-        <h2>No notes.</h2>
-    {% endfor %}
+    <div class="well">
+        <P>Latest Reviews</P>
+        {% for r in reviews %}
+            {{ r.title }}
+            {{ r. }}
+        {% empty %}
+            <h2>No notes.</h2>
+        {% endfor %}
     </div>
+
+
 
 {% endblock %}

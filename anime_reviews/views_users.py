@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.http import Http404
-
-from .models import Review, UserProfile
+import os
+from .models import Review, UserProfile, Announcement
 from .forms import UserRegistrationForm, UserLoginForm, UserProfileForm
 from django.conf import settings
 
@@ -13,8 +13,11 @@ from django.contrib.auth import authenticate, login, logout
 def user_profile(request, user_pk):
     user = User.objects.get(pk=user_pk)
     reviews = Review.objects.all().filter(user=user_pk).order_by('posted_date').reverse()
-    profile = UserProfile.objects.get(user=user.pk)
-    return render(request, 'users/user_profile.html', {'user': user, 'reviews': reviews, 'profile': profile})
+    try:
+        profile = UserProfile.objects.get(user=user.pk)
+        return render(request, 'users/user_profile.html', {'user': user, 'reviews': reviews, 'profile': profile})
+    except UserProfile.DoesNotExist:
+        return render(request, 'users/user_profile.html', {'user': user, 'reviews': reviews})
 
 
 @login_required
@@ -102,3 +105,25 @@ def edit_profile(request):
 def user_logout(request):
     logout(request)
     return redirect(settings.LOGOUT_REDIRECT_URL)
+
+
+def meeting_place(request):
+    key = os.environ.get('GOOGLE_MAP_KEY')
+    return render(request, 'anime_reviews/directions/meeting.html', {'key':key})
+
+
+def announcements(request, message=None):
+    announcements = Announcement.objects.all().order_by('posted_date').reverse()
+    if message:
+        return render(request, 'anime_reviews/announcements/club_page.html', {'announcements': announcements, 'message':message})
+    else:
+        return render(request, 'anime_reviews/announcements/club_page.html', {'announcements': announcements})
+
+
+def announcement_detail(request, id):
+    try:
+        announcement = Announcement.objects.get(id=id)
+        return render(request, 'anime_reviews/announcements/announcement_detail.html', {'a':announcement})
+    except Announcement.DoesNotExist:
+        message = "Announcement was not found"
+        return redirect('anime_reviews:announcements', message=message)

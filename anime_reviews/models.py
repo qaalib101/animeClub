@@ -26,13 +26,19 @@ class Review(models.Model):
         self.likes -= 1
         self.save()
 
+
 class UserProfile(models.Model):
     user = models.ForeignKey('auth.User', blank=False, null=True, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to='user_images/', blank=True, null=True)
     bio = models.TextField(null=True, blank=True)
 
 
+class Announcement(models.Model):
+    subject = models.CharField(max_length=200)
+    details = models.TextField()
+    posted_date = models.DateTimeField(auto_now_add=True, blank=True)
+    modified_date = models.DateTimeField(auto_now=True, blank=True)
+    link = models.CharField(max_length=200)
 
-
-
-
+    def __str__(self):
+        return f'Anime: {self.subject} Date posted: {self.posted_date}'

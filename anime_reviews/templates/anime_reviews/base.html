@@ -16,21 +16,35 @@
 
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
-<h1><a href="{% url 'anime_reviews:homepage' %}">Otaku Club</a></h1>
-{% if request.user.is_authenticated %}
-  <span id='welcome_user_msg'>You are logged in, <a href="{% url 'anime_reviews:user_profile' user_pk=request.user.pk %}">{{ request.user.username }}</a>.  <a href="{% url 'anime_reviews:logout' %}">Logout</a></span>
-
-{% else %}
-
-  <span id='login_or_sign_up'><a href="{% url 'anime_reviews:login_and_signup' %}?next={{ request.path }}">Login or sign up</a></span>
-{% endif %}
-<span id="anime_search"><a href="{% url 'anime_reviews:anime_search' %}">Reviews</a></span>
-<hr>
+<div class="container">
+    <div class="jumbotron">
+        <h1><a href="{% url 'anime_reviews:homepage' %}">Otaku Club</a></h1>
+        {% if request.user.is_authenticated %}
+            <span id='welcome_user_msg'>You are logged in, <a href="{% url 'anime_reviews:user_profile' user_pk=request.user.pk %}">{{ request.user.username }}</a>.  <a href="{% url 'anime_reviews:logout' %}">Logout</a></span>
+        {% else %}
+            <span id='login_or_sign_up'><a href="{% url 'anime_reviews:login_and_signup' %}?next={{ request.path }}">Login or sign up</a></span>
+        {% endif %}
+        <span id="anime_search"><a href="{% url 'anime_reviews:anime_search' %}">Reviews</a></span>
+        <span id="meeting_place"><a href="{% url 'anime_reviews:meeting' %}">Meeting</a></span>
+        <span id="announcement"><a href="{% url 'anime_reviews:announcements' %}">Announcements</a></span>
+    </div>
+</div>
+<body>
 {% if message %}
-    {{ message }}
+    <div class="alert alert-warning">
+        <p>
+          {{ message }}
+        </p>
+    </div>
 {% endif %}
-{% block content %}
-{% endblock %}
-<hr>
-<p>A web app written in Django by an average otaku</p>
+
+<div class="container">
+    {% block content %}
+    {% endblock %}
+    <div class="well">
+       <P>A web app written in Django by an average otaku</P>
+    </div>
+</div>
+</body>
+
 </html>

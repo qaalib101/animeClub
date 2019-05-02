@@ -9,7 +9,10 @@ urlpatterns = [
     path('', views.homepage, name='homepage'),
     path('user/profile/<int:user_pk>/', views_users.user_profile, name='user_profile'),
     path('user/profile/', views_users.my_user_profile, name='my_user_profile'),
-    path('user/profile/edit', views_users.edit_profile, name='edit_profile'),
+    path('user/profile/edit/', views_users.edit_profile, name='edit_profile'),
+    path('club/meeting/', views_users.meeting_place, name='meeting'),
+    path('club/announcements/', views_users.announcements, name='announcements'),
+    path('club/announcements/<int:id>/', views_users.announcement_detail, name='announcement_detail'),
 
     path('accounts/login/', views_users.login_and_signup, name='login_and_signup'),
     path('accounts/logout/', views_users.user_logout, name='logout'),
@@ -22,4 +25,5 @@ urlpatterns = [
     path('review/edit/<int:review_id>/', view_reviews.edit_review, name='edit_review'),
     path('review/delete/<int:review_id>/', view_reviews.delete_review, name='delete_review'),
     path('review/detail/<int:review_id>/', view_reviews.review_detail, name='review_detail'),
+
 ]

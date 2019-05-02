@@ -1,27 +1,28 @@
 {% extends 'anime_reviews/base.html' %}
 
 {% block content %}
-    {% if message %}
-        <P>{{ message }}</p>
-    {% endif %}
+<div class="well well-lg">
+    <h2>Log in</h2>
 
-  <h2>Log in</h2>
+    <form method='POST' action="{% url 'anime_reviews:login_and_signup' %}">{% csrf_token %}
+        <input name="url" type="hidden" value={{ request.GET.next }}>
+        <table id='login_form'>
+            {{ l_form.as_table }}
+        </table>
+        <button type="submit">Login</button>
+    </form>
+</div>
 
-  <form method='POST' action="{% url 'anime_reviews:login_and_signup' %}">{% csrf_token %}
-      <input name="url" type="hidden" value={{ request.GET.next }}>
-  <table id='login_form'>
-    {{ l_form.as_table }}
-  </table>
-    <button type="submit">Login</button>
-  </form>
+<div class="well well-lg">
+    <h2>Or Register</h2>
+    <form method='post' action="{% url 'anime_reviews:register' %}">{% csrf_token %}
+        <input name="url" type="hidden" value={{ request.GET.next }}>
+        <table id="registration_form">
+            {{ s_form.as_table}}
+        </table>
+        <button type='submit'>Register</button>
+    </form>
+</div>
 
-<H2>Or Register</H2>
-<form method='post' action="{% url 'anime_reviews:register' %}">{% csrf_token %}
-    <input name="url" type="hidden" value={{ request.GET.next }}>
-  <table id="registration_form">
-    {{ s_form.as_table}}
-  </table>
-  <button type='submit'>Register</button>
-</form>
 
 {% endblock %}

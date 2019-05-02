@@ -1,0 +1,12 @@
+{% extends 'anime_reviews/base.html' %}
+{% block content %}
+    <div class="well well-lg">
+        <h1>{{ a.subject }}</h1>
+        <p id="announcement_date">{{ a.posted_date }}</p>
+        <h2>Details:</h2>
+        <p>{{ a.details }}</p>
+        {% if a.link %}
+            Link: <a href="{{ a.link }}">{{ a.link }}</a>
+        {% endif %}
+    </div>
+{% endblock %}

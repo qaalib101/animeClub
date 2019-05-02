@@ -1,36 +1,41 @@
 {% extends 'anime_reviews/base.html' %}
 {% block content %}
-{% if user.is_authenticated %}
+{% if request.user.is_authenticated %}
+    <div class="well well-lg">
     <h1>Welcome to your profile page</h1>
+    <a href="{% url 'anime_reviews:edit_profile' %}"><span class="glyphicon glyphicon-pencil" id="edit_profile"></span></a>
 {% else %}
     <h1>Welcome to {{ user.username }}'s profile</h1>
-
 {% endif %}
-    <a href="{% url 'anime_reviews:edit_profile' %}"><span class="glyphicon glyphicon-pencil" id="edit_profile"></span></a>
 
-<p>Here is the future club member profile</p>
     <p>Member since: {{ user.date_joined }}</p>
     {% if profile %}
-        <p>Member photo: <span id="member_photo">{{ profile.photo }}</span></p>
+        {% if profile.photo %}
+            <p>Member photo: <span id="member_photo">{{ profile.photo }}</span></p>
+        {% else %}
+            <p>No member photo</p>
+        {% endif %}
         <p>Bio: {{ profile.bio }}</p>
     {% else %}
         <p>Update your profile so other club members can see what you are about</p>
     {% endif %}
-<P>Latest reviews: </P>
+</div>
 
-{% if reviews %}
-    <div class="container">
+
+<div class="well well-lg">
+    <P>Latest reviews: </P>
+
     {% for r in reviews %}
         <div class="well well-md">
             <h2><a href="{% url 'anime_reviews:review_detail' review_id=review.id %}">{{ r.anime_title }}</a></h2>
             <p>Episode: {{ r.episode }}<</p>
             <p>Comments: {{ r.comments|truncatewords:30 }}</p>
         </div>
+    {% empty %}
+        <p>You have no reviews yet!</p>
     {% endfor %}
-    </div>
-{% else %}
-    <p>You have no reviews yet!</p>
-{% endif %}
+</div>
+
 
 {% endblock %}
 
