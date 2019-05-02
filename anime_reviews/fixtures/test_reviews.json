@@ -4,41 +4,74 @@
     "fields": {
       "user": "1",
       "comments": "I really liked this episode",
-      "posted_date": "2019-1-2",
+      "posted_date": "2018-10-2",
       "modified_date": "2019-2-23",
       "positive_review": "True",
       "likes": "12",
+      "season":  "1",
       "episode": "102",
       "anime_title": "Noragami",
-      "anime_id": "1"
+      "anime_id": "20507"
+    }
+  },
+  {
+    "model": "anime_reviews.review", "pk": 5,
+    "fields": {
+      "user": "1",
+      "comments": "I really liked this episode",
+      "posted_date": "2018-10-1",
+      "modified_date": "2019-2-23",
+      "positive_review": "True",
+      "season": "2",
+      "likes": "12",
+      "episode": "102",
+      "anime_title": "Noragami",
+      "anime_id": "20507"
     }
   },
   {
     "model": "anime_reviews.review", "pk": 2,
     "fields": {
-      "user": "1",
+      "user": "2",
       "comments": "I really liked this episode",
-      "posted_date": "2019-1-2",
+      "posted_date": "2018-12-2",
       "modified_date": "2019-2-23",
       "positive_review": "True",
       "likes": "20",
-      "episode": "102",
-      "anime_title": "Noragami",
-      "anime_id": "1"
+      "season": "1",
+      "episode": "104",
+      "anime_title": "Bleach",
+      "anime_id": "269"
     }
   },
   {
-    "model": "anime_reviews.review", "pk": 1,
+    "model": "anime_reviews.review", "pk": 3,
     "fields": {
       "user": "1",
       "comments": "I really liked this episode",
-      "posted_date": "2019-1-2",
+      "posted_date": "2018-4-4",
       "modified_date": "2019-2-23",
       "positive_review": "True",
-      "likes": "12",
-      "episode": "102",
-      "anime_title": "Noragami",
-      "anime_id": "1"
+      "season": "3",
+      "likes": "5",
+      "episode": "3",
+      "anime_title": "Naruto",
+      "anime_id": "20"
+    }
+  },
+  {
+    "model": "anime_reviews.review", "pk": 4,
+    "fields": {
+      "user": "2",
+      "comments": "I really liked this episode",
+      "posted_date": "2018-4-4",
+      "modified_date": "2019-2-23",
+      "positive_review": "True",
+      "likes": "5",
+      "season": "1",
+      "episode": "3",
+      "anime_title": "One Piece",
+      "anime_id": "21"
     }
   }
 ]

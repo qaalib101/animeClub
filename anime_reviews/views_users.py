@@ -12,12 +12,9 @@ from django.contrib.auth import authenticate, login, logout
 
 def user_profile(request, user_pk):
     user = User.objects.get(pk=user_pk)
-    reviews = Review.objects.all().filter(user=user_pk).order_by('posted_date', 'likes')
-    try:
-        profile = get_object_or_404(UserProfile, user=user.pk)
-        return render(request, 'users/user_profile.html', {'user': user, 'reviews': reviews, 'profile': profile})
-    except Http404:
-        return render(request, 'users/user_profile.html', {'user': user, 'reviews': reviews})
+    reviews = Review.objects.all().filter(user=user_pk).order_by('posted_date').reverse()
+    profile = UserProfile.objects.get(user=user.pk)
+    return render(request, 'users/user_profile.html', {'user': user, 'reviews': reviews, 'profile': profile})
 
 
 @login_required
@@ -66,6 +63,8 @@ def register(request):
             user = form.save()
             user = authenticate(username=request.POST['username'], password=request.POST['password1'])
             login(request, user)
+            profile = UserProfile(user=user)
+            profile.save()
             if next != "":
                 return redirect(next)
             else:
@@ -80,7 +79,7 @@ def edit_profile(request):
     if request.method == 'POST':
         user = request.user
         try:
-            profile = get_object_or_404(UserProfile, user=user.pk)
+            profile = UserProfile.objects.get(user=user.pk)
             form = UserProfileForm(request.POST, instance=profile)
             if form.is_valid():
                 form.save()
@@ -88,11 +87,13 @@ def edit_profile(request):
             else:
                 message = "Please check data entered."
                 return render(request, reverse('anime_reviews:edit_profile'), {'message': message, 'form': form})
-        except Http404:
+        except UserProfile.DoesNotExist:
             form = UserProfileForm(request.POST)
             if form.is_valid():
-                form.save()
-                return redirect('anime_reviews:user_profile')
+                profile = form.save(commit=False)
+                profile.user = user
+                profile.save()
+                return redirect('anime_reviews:my_user_profile')
     else:
         form = UserProfileForm()
         return render(request, 'users/edit_profile.html', {'form': form})

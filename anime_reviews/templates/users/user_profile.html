@@ -6,8 +6,7 @@
     <h1>Welcome to {{ user.username }}'s profile</h1>
 
 {% endif %}
-
-    <a href="{% url 'anime_reviews:edit_profile' %}"><span class="full-right"><span class="glyphicon glyphicon-pencil"></span></span></a>
+    <a href="{% url 'anime_reviews:edit_profile' %}"><span class="glyphicon glyphicon-pencil" id="edit_profile"></span></a>
 
 <p>Here is the future club member profile</p>
     <p>Member since: {{ user.date_joined }}</p>
@@ -20,10 +19,15 @@
 <P>Latest reviews: </P>
 
 {% if reviews %}
+    <div class="container">
     {% for r in reviews %}
-        <h2>{{ r.anime_title }}</h2>
-        <p>Episode: {{ r.episode }}<</p>
+        <div class="well well-md">
+            <h2><a href="{% url 'anime_reviews:review_detail' review_id=review.id %}">{{ r.anime_title }}</a></h2>
+            <p>Episode: {{ r.episode }}<</p>
+            <p>Comments: {{ r.comments|truncatewords:30 }}</p>
+        </div>
     {% endfor %}
+    </div>
 {% else %}
     <p>You have no reviews yet!</p>
 {% endif %}

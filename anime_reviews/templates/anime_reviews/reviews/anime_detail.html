@@ -1,17 +1,24 @@
 {% extends 'anime_reviews/base.html' %}
 {% block content %}
     <div class="container">
+        <a href="{% url 'anime_reviews:new_review' anime_id=show.mal_id%}"><button class="btn btn-primary" id="add_review_button">Add review</button></a>
         <div class="well well-lg">
             <h2>{{ show.title }}</h2>
             <P>{{ show.title_english }}</P>
 
-            <img src={{ show.image_url }}>
+            <img class="img-rounded" id="anime_image" src={{ show.image_url }}>
 
             <p>Plot: {{ show.synopsis }}</p>
         </div>
         {% for review in reviews %}
             <div class="well well-md">
-                <h2>{{ review.title }}</h2>
+                <h2>{{ review.anime_title }}</h2>
+                <p>Episode: {{ review.episode }}</p>
+                <p>Comments: {{ review.comments|truncatewords:30 }}</p>
+            </div>
+        {% empty %}
+            <div class="well">
+                <p>No reviews for this anime</p>
             </div>
         {% endfor %}
     </div>

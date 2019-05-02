@@ -16,6 +16,10 @@ urlpatterns = [
     path('register/', views_users.register, name='register'),
 
     path('anime/search/', view_reviews.search_anime, name='anime_search'),
-    path('anime/detail/<int:anime_id>', view_reviews.anime_detail, name='anime_detail'),
+    path('anime/detail/<int:anime_id>/', view_reviews.anime_detail, name='anime_detail'),
 
+    path('reviews/new/<int:anime_id>/', view_reviews.new_review, name='new_review'),
+    path('review/edit/<int:review_id>/', view_reviews.edit_review, name='edit_review'),
+    path('review/delete/<int:review_id>/', view_reviews.delete_review, name='delete_review'),
+    path('review/detail/<int:review_id>/', view_reviews.review_detail, name='review_detail'),
 ]

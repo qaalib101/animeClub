@@ -13,12 +13,12 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <h1><a href="{% url 'anime_reviews:homepage' %}">Otaku Club</a></h1>
-{% if user.is_authenticated %}
-  <span id='welcome_user_msg'>You are logged in, <a href="{% url 'anime_reviews:user_profile' user_pk=user.pk %}">{{ user.username }}</a>.  <a href="{% url 'anime_reviews:logout' %}">Logout</a></span>
+{% if request.user.is_authenticated %}
+  <span id='welcome_user_msg'>You are logged in, <a href="{% url 'anime_reviews:user_profile' user_pk=request.user.pk %}">{{ request.user.username }}</a>.  <a href="{% url 'anime_reviews:logout' %}">Logout</a></span>
 
 {% else %}
 
