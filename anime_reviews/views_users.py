@@ -16,9 +16,9 @@ def user_profile(request, user_pk):
     reviews = Review.objects.all().filter(user=user_pk).order_by('posted_date').reverse()
     try:
         profile = UserProfile.objects.get(user=user.pk)
-        return render(request, 'users/../static/user_profile.html', {'user': user, 'reviews': reviews, 'profile': profile})
+        return render(request, 'users/user_profile.html', {'user': user, 'reviews': reviews, 'profile': profile})
     except UserProfile.DoesNotExist:
-        return render(request, 'users/../static/user_profile.html', {'user': user, 'reviews': reviews})
+        return render(request, 'users/user_profile.html', {'user': user, 'reviews': reviews})
 
 
 @login_required
