@@ -79,17 +79,15 @@ WSGI_APPLICATION = 'animeClub.wsgi.application'
 
 
 DATABASES = {
-    'default': '''{
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'anime',
-        'USER': 'qaalib',
+        'USER': 'user',
         'PASSWORD': os.environ.get('AC_DB_PW'),
         'HOST': 'localhost',
         'PORT': '5432'
-    }'''
+    }
 }
-db_from_env = dj_database_url.config(default=config('DATABASE_URL'), conn_max_age=600, ssl_require=True)
-DATABASES['default'] = db_from_env
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
