@@ -4,11 +4,6 @@ body {
     background-color: darkslategrey;
 }
 
-#welcome_user_msg, #login_or_sign_up, #edit_profile{
-    position: absolute;
-    right: 0px;
-    padding-right: 10px;
-}
 #anime_search_form{
     position: center;
 }

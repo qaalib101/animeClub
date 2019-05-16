@@ -1,11 +1,14 @@
 {% extends 'anime_reviews/base.html' %}
 {% block content %}
     {% load crispy_forms_tags %}
-    <h1>Review about {{ show.anime_title }}</h1>
-    <h2>Any changes you have had with this review</h2>
-    <form id="new_review_form" action="{% url 'anime_reviews:edit_review' review_id=show.mal_id %}" method="POST">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit" class="btn btn-primary">Add</button>
-    </form>
+    <div class="well well-lg">
+        <h1>Review about {{ show.anime_title }}</h1>
+        <h2>Any changes you have had with this review</h2>
+        <form id="new_review_form" action="{% url 'anime_reviews:edit_review' review_id=show.id %}" method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+    </div>
+
 {% endblock %}

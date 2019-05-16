@@ -1,0 +1,16 @@
+{% extends 'anime_reviews/base.html' %}
+{% block content %}
+    <div class="well">
+        <P>Latest Reviews</P>
+        <hr>
+        {% for r in reviews %}
+            <P>Posted date: {{ r.posted_date }}</P>
+            <h2><a href="{% url 'anime_reviews:anime_detail' anime_id=r.anime_id %}">{{ r.anime_title }}</a></h2>
+            <p>Season: {{ r.season }} Episode: {{ r.episode }}</p>
+            <p>Comments: {{ r.comments|truncatewords:30 }}</p>
+        {% empty %}
+            <h2>No notes.</h2>
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -27,9 +27,10 @@
 
     {% for r in reviews %}
 
-            <h2><a href="{% url 'anime_reviews:review_detail' review_id=review.id %}">{{ r.anime_title }}</a></h2>
-            <p>Episode: {{ r.episode }}<</p>
+            <h2><a href="{% url 'anime_reviews:anime_detail' anime_id=r.anime_id %}">{{ r.anime_title }}</a></h2>
+            <p>Episode: {{ r.episode }}</p>
             <p>Comments: {{ r.comments|truncatewords:30 }}</p>
+        <p><a href="{% url 'anime_reviews:review_detail' review_id=r.id %}">Details</a></p>
 
     {% empty %}
         <p>You have no reviews yet!</p>

@@ -82,7 +82,7 @@ def edit_review(request, review_id):
         form = ReviewForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-        return render(request, 'anime_reviews/reviews/review_detail.html')
+        return redirect('anime_reviews:review_detail', review_id=review_id)
     else:
         form = ReviewForm(instance=instance)
         return render(request, 'anime_reviews/reviews/edit_review.html', {'form': form, 'show': instance})
@@ -104,3 +104,9 @@ def delete_review(request, review_id):
         return render(request, 'anime_reviews/reviews/review_detail.html', {'review': review})
     except Review.DoesNotExist:
         return render(request, 'anime_reviews/home.html')
+
+
+@login_required
+def latest_reviews(request):
+    reviews = Review.objects.all().order_by('posted_date').reverse()
+    return render(request, 'anime_reviews/reviews/reviews.html', {'reviews': reviews})

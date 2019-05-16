@@ -15,19 +15,5 @@
             <div>Search for an anime tv show</div>
         {% endfor %}
     </div>
-    <hr>
-    <div class="well">
-        <P>Latest Reviews</P>
-        {% for r in reviews %}
-            <P>Posted date: {{ r.posted_date }}</P>
-            <h2><a href="{% url 'anime_reviews:review_detail' review_id=review.id %}">{{ r.anime_title }}</a></h2>
-            <p>Episode: {{ r.episode }}<</p>
-            <p>Comments: {{ r.comments|truncatewords:30 }}</p>
-        {% empty %}
-            <h2>No notes.</h2>
-        {% endfor %}
-    </div>
-
-
 
 {% endblock %}

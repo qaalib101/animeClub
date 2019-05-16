@@ -22,6 +22,7 @@ urlpatterns = [
 
     path('anime/search/', view_reviews.search_anime, name='anime_search'),
     path('anime/detail/<int:anime_id>/', view_reviews.anime_detail, name='anime_detail'),
+    path('reviews/latest/', view_reviews.latest_reviews, name='latest_reviews'),
 
     path('reviews/new/<int:anime_id>/', view_reviews.new_review, name='new_review'),
     path('review/edit/<int:review_id>/', view_reviews.edit_review, name='edit_review'),

@@ -16,9 +16,9 @@ def user_profile(request, user_pk):
     reviews = Review.objects.all().filter(user=user_pk).order_by('posted_date').reverse()
     try:
         profile = UserProfile.objects.get(user=user.pk)
-        return render(request, 'users/user_profile.html', {'user': user, 'reviews': reviews, 'profile': profile})
+        return render(request, 'users/../static/user_profile.html', {'user': user, 'reviews': reviews, 'profile': profile})
     except UserProfile.DoesNotExist:
-        return render(request, 'users/user_profile.html', {'user': user, 'reviews': reviews})
+        return render(request, 'users/../static/user_profile.html', {'user': user, 'reviews': reviews})
 
 
 @login_required
@@ -148,6 +148,7 @@ def add_announcement(request):
 @login_required
 def edit_announcement(request, id):
     form = NewAnnouncementForm()
+    instance = Announcement.objects.get(id=id)
     try:
         instance = Announcement.objects.get(pk=id)
         form = NewAnnouncementForm(request.POST, instance=instance)
@@ -165,4 +166,4 @@ def edit_announcement(request, id):
                           {'form': form, 'message': message})
     else:
         return render(request, 'anime_reviews/announcements/edit_announcement.html',
-                      {'form': form})
+                      {'form': form, 'a': instance})

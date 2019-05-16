@@ -20,13 +20,14 @@
     <div class="jumbotron">
         <h1><a href="{% url 'anime_reviews:homepage' %}">Otaku Club</a></h1>
         {% if request.user.is_authenticated %}
-            <span id='welcome_user_msg'>You are logged in, <a href="{% url 'anime_reviews:user_profile' user_pk=request.user.pk %}">{{ request.user.username }}</a>.  <a href="{% url 'anime_reviews:logout' %}">Logout</a></span>
+            <span id='welcome_user_msg'>You are logged in, <a class="glyphicon glyphicon-user" href="{% url 'anime_reviews:user_profile' user_pk=request.user.pk %}"></a>.  <a class="glyphicon glyphicon-log-out" href="{% url 'anime_reviews:logout' %}"></a></span>
         {% else %}
-            <span id='login_or_sign_up'><a href="{% url 'anime_reviews:login_and_signup' %}?next={{ request.path }}">Login or sign up</a></span>
+            <span id='login_or_sign_up'><a class="glyphicon glyphicon-log-in" href="{% url 'anime_reviews:login_and_signup' %}?next={{ request.path }}"></a></span>
         {% endif %}
-        <span id="anime_search"><a href="{% url 'anime_reviews:anime_search' %}">Reviews</a></span>
+        <span id="anime_search"><a href="{% url 'anime_reviews:anime_search' %}">Search</a></span>
         <span id="meeting_place"><a href="{% url 'anime_reviews:meeting' %}">Meeting</a></span>
-        <span id="announcement"><a href="{% url 'anime_reviews:announcements' %}">Announcements</a></span>
+        <span id="announcements"><a href="{% url 'anime_reviews:announcements' %}">Announcements</a></span>
+        <span id="anime_search"><a href="{% url 'anime_reviews:latest_reviews' %}">Reviews</a></span>
     </div>
 </div>
 <body>

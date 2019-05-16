@@ -1,8 +1,9 @@
 {% extends 'anime_reviews/base.html' %}
 {% block content %}
+    {% load crispy_forms_tags %}
     <P>Edit Profile</P>
     <form id="edit_profile_form" method="POST" action="{% url 'anime_reviews:edit_profile' %}">{% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
     <button class="btn btn-default" type="submit">Edit</button>
     </form>
 {% endblock %}
