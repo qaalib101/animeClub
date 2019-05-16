@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from jikanpy import Jikan, JikanException
 from .models import Review
 from .forms import UserRegistrationForm, UserLoginForm, AnimeSearchForm, ReviewForm
 from django.conf import settings

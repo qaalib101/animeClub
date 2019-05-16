@@ -8,7 +8,6 @@ Django==2.2
 django-crispy-forms==1.7.2
 gunicorn==19.9.0
 idna==2.8
-jikanpy==3.0.0
 multidict==4.5.2
 Pillow==6.0.0
 psycopg2==2.8.2
