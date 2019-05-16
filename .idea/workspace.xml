@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="eeba41d8-a905-4361-99bf-8d391677000d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/animeClub/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/animeClub/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/anime_reviews/templates/anime_reviews/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/anime_reviews/templates/anime_reviews/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/anime_reviews/templates/anime_reviews/reviews/anime_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/anime_reviews/templates/anime_reviews/reviews/anime_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/anime_reviews/css/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/anime_reviews/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/anime_reviews/static/css/base.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,20 +37,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/anime_reviews/templates/anime_reviews/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+            <state relative-caret-position="221">
+              <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/animeClub/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="141" column="35" lean-forward="true" selection-start-line="141" selection-start-column="35" selection-end-line="141" selection-end-column="35" />
+            <state relative-caret-position="255">
+              <caret line="140" column="7" selection-start-line="140" selection-start-column="7" selection-end-line="140" selection-end-column="7" />
               <folding>
                 <element signature="e#310#319#0" expanded="true" />
               </folding>
@@ -172,8 +170,8 @@
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/anime_reviews/templates/anime_reviews/reviews/anime_detail.html" />
-        <option value="$PROJECT_DIR$/animeClub/settings.py" />
         <option value="$PROJECT_DIR$/anime_reviews/templates/anime_reviews/base.html" />
+        <option value="$PROJECT_DIR$/animeClub/settings.py" />
       </list>
     </option>
   </component>
@@ -216,18 +214,13 @@
             <path>
               <item name="animeClub" type="b2602c69:ProjectViewProjectNode" />
               <item name="animeClub" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="animeClub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="animeClub" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="anime_reviews" type="462c0819:PsiDirectoryNode" />
+              <item name="staticfiles" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="animeClub" type="b2602c69:ProjectViewProjectNode" />
               <item name="animeClub" type="462c0819:PsiDirectoryNode" />
               <item name="staticfiles" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -247,10 +240,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\qaali\PycharmProjects\animeClub" />
+      <recent name="C:\Users\qaali\PycharmProjects\animeClub\anime_reviews\static" />
+      <recent name="C:\Users\qaali\PycharmProjects\animeClub\anime_reviews" />
       <recent name="C:\Users\qaali\PycharmProjects\animeClub\static\anime_reviews" />
       <recent name="C:\Users\qaali\PycharmProjects\animeClub\anime_reviews\templates\users" />
-      <recent name="C:\Users\qaali\PycharmProjects\animeClub\static" />
-      <recent name="C:\Users\qaali\PycharmProjects\animeClub" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -421,7 +415,7 @@
       <workItem from="1556917111222" duration="5697000" />
       <workItem from="1557179905527" duration="251000" />
       <workItem from="1557356168860" duration="7712000" />
-      <workItem from="1557947559399" duration="13726000" />
+      <workItem from="1557947559399" duration="14544000" />
     </task>
     <task id="LOCAL-00001" summary="first commit basic web app built">
       <created>1554942610820</created>
@@ -507,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557979378519</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="heroku config and added more details to anime detail page">
+      <created>1557981637959</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1557981637959</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -543,7 +544,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141202000" />
+    <option name="totallyTimeSpent" value="142020000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -556,9 +557,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49754903" visible="true" weight="0.17651822" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49754903" visible="true" weight="0.17651822" />
       <window_info id="Structure" order="1" sideWeight="0.502451" side_tool="true" weight="0.11497976" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -572,7 +572,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3285968" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50084317" side_tool="true" weight="0.3277311" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49915683" visible="true" weight="0.3631841" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49915683" visible="true" weight="0.3631841" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3268206" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -615,7 +615,8 @@
     <MESSAGE value="added edits to review fixtures. added review model changes. added new edit, delete and new review view functions and relevant tamplates. fixed issue where user could not create a profile and save it.&#10;fixed issue where the user could not register. added new tests for new features added." />
     <MESSAGE value="added announcements detail and club page. added meeting page that has the location of the meeting place for the group using a google maps api. added better css to website." />
     <MESSAGE value="heroku config" />
-    <option name="LAST_COMMIT_MESSAGE" value="heroku config" />
+    <MESSAGE value="heroku config and added more details to anime detail page" />
+    <option name="LAST_COMMIT_MESSAGE" value="heroku config and added more details to anime detail page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -945,7 +946,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/anime_reviews/css/base.css">
+    <entry file="file://$PROJECT_DIR$/anime_reviews/static/css/base.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
@@ -1006,20 +1007,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/animeClub/settings.py">
+    <entry file="file://$PROJECT_DIR$/anime_reviews/templates/anime_reviews/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="141" column="35" lean-forward="true" selection-start-line="141" selection-start-column="35" selection-end-line="141" selection-end-column="35" />
-          <folding>
-            <element signature="e#310#319#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="221">
+          <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/anime_reviews/templates/anime_reviews/base.html">
+    <entry file="file://$PROJECT_DIR$/animeClub/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+          <caret line="140" column="7" selection-start-line="140" selection-start-column="7" selection-end-line="140" selection-end-column="7" />
+          <folding>
+            <element signature="e#310#319#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
