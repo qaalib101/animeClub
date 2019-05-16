@@ -1,0 +1,22 @@
+[
+  {
+    "model": "anime_reviews.announcement", "pk": 1,
+    "fields": {
+      "details": "A new member has joined the club",
+      "posted_date": "2018-10-2",
+      "modified_date": "2019-2-23",
+      "subject": "New Member",
+      "link": "user/profile/1"
+    }
+  },
+  {
+    "model": "anime_reviews.announcement", "pk": 2,
+    "fields": {
+      "details": "We have changed the look of the website",
+      "posted_date": "2019-4-9",
+      "modified_date": "2019-5-3",
+      "subject": "Website Changes",
+      "link": "/"
+    }
+  }
+]

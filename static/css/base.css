@@ -1,6 +1,7 @@
 body {
-  font-family: monospace;
-  padding: 10px;
+    font-family: monospace;
+    padding: 10px;
+    background-color: darkslategrey;
 }
 
 #welcome_user_msg, #login_or_sign_up, #edit_profile{
@@ -15,7 +16,4 @@ body {
 #edit_profile{
     padding-right: 10px;
     size: 12px;
-}
-body{
-    background-image: linear-gradient(deepskyblue, darkseagreen);
 }

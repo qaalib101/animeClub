@@ -1,16 +1,12 @@
 {% extends 'anime_reviews/base.html' %}
 
 {% block content %}
-
+{% load crispy_forms_tags %}
 <H2>Register</H2>
-
-{% if message %}
-  <P>{{ message }}</p>
-{% endif %}
 
 <form method='post' action="{% url 'anime_reviews:register' %}">{% csrf_token %}
   <table id="registration_form">
-    {{ form.as_table}}
+    {{ form|crispy}}
   </table>
   <button type='submit'>Register</button>
 </form>

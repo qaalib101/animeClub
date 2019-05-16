@@ -4,7 +4,8 @@
         "first_name" : "alice",
         "last_name" : "last",
         "email" : "a@a.com",
-        "password" : "qwertyuiop"
+        "password" : "qwertyuiop",
+        "is_staff" : "True"
       }
     },
 

@@ -1,6 +1,9 @@
 {% extends 'anime_reviews/base.html' %}
 {% block content %}
     <div class="well well-lg">
+    {% if request.user.is_staff %}
+        <a href="{% url 'anime_reviews:edit_announcement' id=a.pk %}" class="glyphicon glyphicon-pencil"></a>
+    {% endif %}
         <h1>{{ a.subject }}</h1>
         <p id="announcement_date">{{ a.posted_date }}</p>
         <h2>Details:</h2>

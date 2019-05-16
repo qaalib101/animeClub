@@ -1,12 +1,15 @@
 {% extends 'anime_reviews/base.html' %}
 {% block content %}
-    <div class="well well">
+    <div class="well">
     <h1>Club Announcements</h1>
+        {% if request.user.is_staff %}
+            <a href="{% url 'anime_reviews:add_announcement' %}" class="glyphicon glyphicon-plus"></a>
+        {% endif %}
     </div>
     <div class="well well-lg">
     {% for a in announcements %}
         <P>{{ a.posted_date }}</P>
-        <h2><a href="{% url 'anime_reviews:announcement_detail' id=a.id %}"></a>{{ a.subject }}</h2>
+        <h2><a href="{% url 'anime_reviews:announcement_detail' id=a.id %}">{{ a.subject }}</a></h2>
         <p>{{ a.details|truncatewords:30 }}</p>
         <hr>
     {% empty %}

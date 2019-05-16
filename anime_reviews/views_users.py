@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.http import Http404
 import os
+from datetime import datetime
 from .models import Review, UserProfile, Announcement
-from .forms import UserRegistrationForm, UserLoginForm, UserProfileForm
+from .forms import UserRegistrationForm, UserLoginForm, UserProfileForm, NewAnnouncementForm
 from django.conf import settings
 
 from django.contrib.auth.decorators import login_required
@@ -112,12 +113,9 @@ def meeting_place(request):
     return render(request, 'anime_reviews/directions/meeting.html', {'key':key})
 
 
-def announcements(request, message=None):
+def announcements(request):
     announcements = Announcement.objects.all().order_by('posted_date').reverse()
-    if message:
-        return render(request, 'anime_reviews/announcements/club_page.html', {'announcements': announcements, 'message':message})
-    else:
-        return render(request, 'anime_reviews/announcements/club_page.html', {'announcements': announcements})
+    return render(request, 'anime_reviews/announcements/club_page.html', {'announcements': announcements})
 
 
 def announcement_detail(request, id):
@@ -126,4 +124,45 @@ def announcement_detail(request, id):
         return render(request, 'anime_reviews/announcements/announcement_detail.html', {'a':announcement})
     except Announcement.DoesNotExist:
         message = "Announcement was not found"
-        return redirect('anime_reviews:announcements', message=message)
+        announcements = Announcement.objects.all().order_by('posted_date').reverse()
+        return render(request, 'anime_reviews/announcements/club_page.html', {'announcements': announcements, 'message': message})
+
+
+@login_required
+def add_announcement(request):
+    form = NewAnnouncementForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            a = form.save(commit=False)
+            a.posted_date = datetime.now()
+            a.save()
+            return redirect('anime_reviews:announcement_detail', id=a.pk)
+        else:
+            message = 'Incorrect information entered'
+            return render(request, 'anime_reviews/announcements/add_announcement.html',
+                          {'form': form, 'message': message})
+    else:
+        return render(request, 'anime_reviews/announcements/add_announcement.html', {'form': form})
+
+
+@login_required
+def edit_announcement(request, id):
+    form = NewAnnouncementForm()
+    try:
+        instance = Announcement.objects.get(pk=id)
+        form = NewAnnouncementForm(request.POST, instance=instance)
+    except Announcement.DoesNotExist:
+        form = NewAnnouncementForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            announcement = form.save(commit=False)
+            announcement.publish()
+            announcement.save()
+            return redirect('anime_reviews:announcement_detail', id=announcement.pk)
+        else:
+            message = 'Incorrect information entered'
+            return render(request, 'anime_reviews/announcements/edit_announcement.html',
+                          {'form': form, 'message': message})
+    else:
+        return render(request, 'anime_reviews/announcements/edit_announcement.html',
+                      {'form': form})

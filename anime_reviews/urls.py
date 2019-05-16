@@ -13,6 +13,8 @@ urlpatterns = [
     path('club/meeting/', views_users.meeting_place, name='meeting'),
     path('club/announcements/', views_users.announcements, name='announcements'),
     path('club/announcements/<int:id>/', views_users.announcement_detail, name='announcement_detail'),
+    path('club/announcements/edit/<int:id>/', views_users.edit_announcement, name='edit_announcement'),
+    path('club/announcements/add/', views_users.add_announcement, name='add_announcement'),
 
     path('accounts/login/', views_users.login_and_signup, name='login_and_signup'),
     path('accounts/logout/', views_users.user_logout, name='logout'),

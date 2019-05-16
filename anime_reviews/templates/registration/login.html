@@ -1,14 +1,12 @@
 {% extends 'anime_reviews/base.html' %}
 
 {% block content %}
+    {% load crispy_forms_tags %}
 <div class="well well-lg">
     <h2>Log in</h2>
 
     <form method='POST' action="{% url 'anime_reviews:login_and_signup' %}">{% csrf_token %}
-        <input name="url" type="hidden" value={{ request.GET.next }}>
-        <table id='login_form'>
-            {{ l_form.as_table }}
-        </table>
+        {{ l_form|crispy }}
         <button type="submit">Login</button>
     </form>
 </div>
@@ -16,10 +14,7 @@
 <div class="well well-lg">
     <h2>Or Register</h2>
     <form method='post' action="{% url 'anime_reviews:register' %}">{% csrf_token %}
-        <input name="url" type="hidden" value={{ request.GET.next }}>
-        <table id="registration_form">
-            {{ s_form.as_table}}
-        </table>
+        {{ s_form|crispy}}
         <button type='submit'>Register</button>
     </form>
 </div>

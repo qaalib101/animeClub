@@ -12,6 +12,8 @@ from django.contrib.auth import authenticate, login, logout
 
 
 requests_cache.install_cache()
+
+
 @login_required
 def search_anime(request):
     form = AnimeSearchForm()
@@ -46,6 +48,7 @@ def anime_detail(request, anime_id):
         reviews = Review.objects.filter(anime_id=anime_id).order_by('posted_date', 'likes').reverse()
         return render(request, 'anime_reviews/reviews/anime_detail.html', {'show': show, 'reviews': reviews})
 
+
 @login_required
 def new_review(request, anime_id):
     show = requests.get(f'https://api.jikan.moe/v3/anime/{anime_id}').json()
@@ -70,10 +73,13 @@ def new_review(request, anime_id):
         else:
             form = ReviewForm()
             return render(request, 'anime_reviews/reviews/new_review.html', {'form': form, 'show': show})
+
+
 @login_required
 def edit_review(request, review_id):
     instance = Review.objects.get(id=review_id)
     if request.method == 'POST':
+
         form = ReviewForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
@@ -81,6 +87,8 @@ def edit_review(request, review_id):
     else:
         form = ReviewForm(instance=instance)
         return render(request, 'anime_reviews/reviews/edit_review.html', {'form': form, 'show': instance})
+
+
 @login_required
 def review_detail(request, review_id):
     try:

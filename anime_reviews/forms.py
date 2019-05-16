@@ -1,5 +1,5 @@
 from django import forms
-from .models import Review, UserProfile
+from .models import Review, UserProfile, Announcement
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -86,3 +86,8 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ('season', 'episode', 'comments', 'positive_review')
 
+
+class NewAnnouncementForm(forms.ModelForm):
+    class Meta:
+        model = Announcement
+        fields = ('subject', 'details', 'link')

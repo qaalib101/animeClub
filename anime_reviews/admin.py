@@ -4,3 +4,4 @@ from .models import Review, Announcement, UserProfile
 
 admin.site.register(Review)
 admin.site.register(Announcement)
+admin.site.register(UserProfile)
