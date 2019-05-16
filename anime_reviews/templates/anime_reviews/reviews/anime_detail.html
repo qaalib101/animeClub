@@ -8,6 +8,9 @@
 
             <img class="img-rounded" id="anime_image" src={{ show.image_url }}>
 
+            <p>Number of episodes: {{ show.episodes }}</p>
+            <p>Status: {{ show.status }}</p>
+            <p>Score users gave it: {{ show.score }}</p>
             <p>Plot: {{ show.synopsis }}</p>
         </div>
         {% for review in reviews %}
