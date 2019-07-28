@@ -1,7 +1,7 @@
 {% extends 'anime_reviews/base.html' %}
 {% block content %}
-{% if request.user.is_authenticated %}
-    <div class="well well-lg">
+<div class="well well-lg">
+{% if request.user.is_authenticated and request.user == profile.user%}
     <h1>Welcome to your profile page</h1>
     <a href="{% url 'anime_reviews:edit_profile' %}"><span class="glyphicon glyphicon-pencil" id="edit_profile"></span></a>
 {% else %}
@@ -40,4 +40,3 @@
 
 
 {% endblock %}
-

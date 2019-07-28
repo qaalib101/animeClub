@@ -58,7 +58,9 @@ ROOT_URLCONF = 'animeClub.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+        os.path.join(BASE_DIR,'anime_reviews/templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,16 +81,14 @@ WSGI_APPLICATION = 'animeClub.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'anime',
-        'USER': 'user',
-        'PASSWORD': os.environ.get('AC_DB_PW'),
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
+    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
-
+'''ENGINE': 'django.db.backends.postgresql',
+'NAME': 'anime',
+'USER': 'user',
+'PASSWORD': os.environ.get('AC_DB_PW'),
+'HOST': 'localhost',
+'PORT': '5432'''
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
