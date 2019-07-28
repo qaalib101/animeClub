@@ -136,20 +136,23 @@ def announcement_detail(request, id):
 
 @login_required
 def add_announcement(request):
-    form = NewAnnouncementForm(request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            a = form.save(commit=False)
-            a.posted_date = datetime.now()
-            a.save()
-            return redirect('anime_reviews:announcement_detail', id=a.pk)
+    if request.user.is_staff:
+        form = NewAnnouncementForm(request.POST)
+        if request.method == 'POST':
+            if form.is_valid():
+                a = form.save(commit=False)
+                a.posted_date = datetime.now()
+                a.save()
+                return redirect('anime_reviews:announcement_detail', id=a.pk)
+            else:
+                message = 'Incorrect information entered'
+                return render(request, 'anime_reviews/announcements/add_announcement.html',
+                            {'form': form, 'message': message})
         else:
-            message = 'Incorrect information entered'
-            return render(request, 'anime_reviews/announcements/add_announcement.html',
-                          {'form': form, 'message': message})
+            return render(request, 'anime_reviews/announcements/add_announcement.html', {'form': form})
     else:
-        return render(request, 'anime_reviews/announcements/add_announcement.html', {'form': form})
-
+        message = 'You need to be a club executive to add or edit announcements'
+        return render(request, 'anime_reviews/announcements/club_page.html', {'message': message})
 
 @login_required
 def edit_announcement(request, id):
@@ -160,16 +163,20 @@ def edit_announcement(request, id):
         form = NewAnnouncementForm(request.POST, instance=instance)
     except Announcement.DoesNotExist:
         form = NewAnnouncementForm(request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            announcement = form.save(commit=False)
-            announcement.publish()
-            announcement.save()
-            return redirect('anime_reviews:announcement_detail', id=announcement.pk)
+    if request.user.is_staff:
+        if request.method == 'POST':
+            if form.is_valid():
+                announcement = form.save(commit=False)
+                announcement.publish()
+                announcement.save()
+                return redirect('anime_reviews:announcement_detail', id=announcement.pk)
+            else:
+                message = 'Incorrect information entered'
+                return render(request, 'anime_reviews/announcements/edit_announcement.html',
+                            {'form': form, 'message': message})
         else:
-            message = 'Incorrect information entered'
             return render(request, 'anime_reviews/announcements/edit_announcement.html',
-                          {'form': form, 'message': message})
+                          {'form': form, 'a': instance})
     else:
-        return render(request, 'anime_reviews/announcements/edit_announcement.html',
-                      {'form': form, 'a': instance})
+        message = 'You need to be a club executive to add or edit announcements'
+        return render(request, 'anime_reviews/announcements/club_page.html', {'message': message})
