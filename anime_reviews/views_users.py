@@ -80,14 +80,15 @@ def register(request):
 
 @login_required
 def edit_profile(request):
+    user = request.user
     if request.method == 'POST':
-        user = request.user
         try:
             profile = UserProfile.objects.get(user=user.pk)
             form = UserProfileForm(request.POST, instance=profile)
             if form.is_valid():
-                form.save()
-                return redirect('anime_reviews:user_profile')
+                if form.data['bio'] or form.data['photo']:
+                    form.save()
+                return redirect('anime_reviews:my_user_profile')
             else:
                 message = "Please check data entered."
                 return render(request, reverse('anime_reviews:edit_profile'), {'message': message, 'form': form})
@@ -100,6 +101,11 @@ def edit_profile(request):
                 return redirect('anime_reviews:my_user_profile')
     else:
         form = UserProfileForm()
+        try:
+            profile = UserProfile.objects.get(user=user.pk)
+            form = UserProfileForm(instance=profile)
+        except UserProfile.DoesNotExist:
+            form = UserProfileForm()
         return render(request, 'users/edit_profile.html', {'form': form})
 
 
