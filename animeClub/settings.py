@@ -45,6 +45,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -83,12 +84,15 @@ WSGI_APPLICATION = 'animeClub.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
-'''ENGINE': 'django.db.backends.postgresql',
-'NAME': 'anime',
-'USER': 'user',
-'PASSWORD': os.environ.get('AC_DB_PW'),
-'HOST': 'localhost',
-'PORT': '5432'''
+#   'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'anime',
+#         'USER': 'user',
+#         'PASSWORD': os.environ.get('AC_DB_PW'),
+#         'HOST': 'localhost',
+#         'PORT': '5432'
+#     }
+
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -124,12 +128,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles/")
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/staticfiles/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'anime_reviews/static'),
-)
+STATICFILES_DIRS = [
+     os.path.join(BASE_DIR, "anime_reviews/static"),
+]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 

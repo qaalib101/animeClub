@@ -1,7 +1,7 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <title>Minneapolis Otaku Club Web App</title>
     <!-- Latest compiled and minified CSS -->
@@ -18,16 +18,16 @@
 </head>
 <div class="container">
     <div class="jumbotron">
-        <h1><a href="{% url 'anime_reviews:homepage' %}">Otaku Club</a></h1>
+        <h1><a href="{% url 'anime_reviews:homepage' %}" class="nonunderline">Otaku Club</a></h1>
         {% if request.user.is_authenticated %}
             <span id='welcome_user_msg'>You are logged in, <a class="glyphicon glyphicon-user" href="{% url 'anime_reviews:user_profile' user_pk=request.user.pk %}"></a>.  <a class="glyphicon glyphicon-log-out" href="{% url 'anime_reviews:logout' %}"></a></span>
         {% else %}
             <span id='login_or_sign_up'><a class="glyphicon glyphicon-log-in" href="{% url 'anime_reviews:login_and_signup' %}?next={{ request.path }}"></a></span>
         {% endif %}
-        <span id="anime_search"><a href="{% url 'anime_reviews:anime_search' %}">Search</a></span>
-        <span id="meeting_place"><a href="{% url 'anime_reviews:meeting' %}">Meeting</a></span>
-        <span id="announcements"><a href="{% url 'anime_reviews:announcements' %}">Announcements</a></span>
-        <span id="anime_search"><a href="{% url 'anime_reviews:latest_reviews' %}">Reviews</a></span>
+        <span id="anime_search"><a href="{% url 'anime_reviews:anime_search' %}" class="nonunderline">Search</a></span>
+        <span id="meeting_place"><a href="{% url 'anime_reviews:meeting' %}" class="nonunderline">Meeting</a></span>
+        <span id="announcements"><a href="{% url 'anime_reviews:announcements' %}" class="nonunderline">Announcements</a></span>
+        <span id="anime_search"><a href="{% url 'anime_reviews:latest_reviews' %}" class="nonunderline">Reviews</a></span>
     </div>
 </div>
 <body>
